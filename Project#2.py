@@ -22,7 +22,6 @@ def count_matches(sequence1, sequence2):
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MILESTONE 2 STARTING FROM HERE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #The function displays the user’s options. Within this function it enables the user to see all 
 #options that the user can choose from.
-
 def print_menu():
     print("Main Menu")
     print("1. Insert an indel")
@@ -30,15 +29,16 @@ def print_menu():
     print("3. Score similarity")
     print("4. Suggest indel")
     print("5. Quit")
+    
 #After printing out the menu it is necessary that our user inputs the valid menu option. This 
 #validates what integer value the user can input and keeps asking the user until a valid 
 #number is given.
-
 def get_menu_choice():
     menu_option = int(input("Please choose an option: \n"))
     while menu_option < 1 or menu_option > 5:
         menu_option = int(input("Please choose an option: \n"))
     return menu_option
+
 #The function takes a DNA sequence number and validates it. If the number satisfies the #conditions, the function returns the given number. If the number does not satisfy the #condition, the function will repeatedly ask the user for a valid sequence number.   
 def get_sequence_number():
     sequence_num = int(input("Sequence 1 or 2?\n"))   
@@ -49,12 +49,12 @@ def get_sequence_number():
 #In this function the user inputs a position, one greater than the index, to input an indel at a 
 #position that is valid within the given sequence. This function does not return index but 
 #rather where the indel will be placed.
-    
 def get_insert_position(sequence):
     position = int(input("Please choose a position:\n"))
     while position < 1 or position > len(sequence):
         position = int(input("Please choose a position:\n"))
     return position
+
 #This function removes an indel by the given position of the user’s input. This returns the #position value.
 def get_remove_position(sequence):
     position_of_indel = int(input("Please choose a position:\n"))
@@ -68,6 +68,7 @@ def get_remove_position(sequence):
 def remove_indel(sequence,index):
     removed_indel_string = sequence[0:index:] + sequence[index+1::]
     return removed_indel_string
+
 #In this function, we calculate the optimal position by using brute force to get the highest percent of matches and returning the position of the best match. 
 def find_optimal_indel_position(sequence, other_sequence):
     #Within my function I make an empty list where I input all the percentages of each time the indel is placed at a certain index.
@@ -81,6 +82,7 @@ def find_optimal_indel_position(sequence, other_sequence):
         optimal_index.append(percentage)
         i += 1
     return optimal_index.index(max(optimal_index))
+
 #The function takes two DNA sequence strings. It compares each individual index value to one another and determines if they’re identical.
 #If they are identical, the function returns the letters in the indexes in lowercase and the letters that are not identical in uppercase.
 def print_similar_sequences(dna_sequence1, dna_sequence2):
